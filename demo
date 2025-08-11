@@ -1,14 +1,11 @@
 import streamlit as st
 import numpy as np
 import joblib
-from transformers import BertTokenizer, BertModel, logging
+from transformers import BertTokenizer, BertModel
 import torch
 import time
 from PIL import Image
 import os
-
-# Suppress transformer warnings
-logging.set_verbosity_error()
 
 # Device config
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -16,17 +13,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # Load model
 model = joblib.load('/Users/nahin/Documents/deploy/best_log_reg.pkl')
 
-# Load BERT tokenizer and model
+# Load BERT
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-
-try:
-    bert_model = BertModel.from_pretrained('bert-base-uncased')
-    bert_model.to(device)
-except NotImplementedError as e:
-    print("Model load error:", e)
-    bert_model = BertModel.from_pretrained('bert-base-uncased', torch_dtype=torch.float32)
-    bert_model.to(device)
-
+bert_model = BertModel.from_pretrained('bert-base-uncased')
+bert_model.to(device)
 bert_model.eval()
 
 # Embedding function
@@ -105,3 +95,13 @@ with col2:
         else:
             st.error("🤖 **Prediction: ChatGPT-Generated**")
             st.image("/Users/nahin/Documents/deploy/robot.jpg", caption="That's some AI magic! 🤖✨", width=300)
+
+
+
+
+
+
+
+
+
+
