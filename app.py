@@ -105,3 +105,8 @@ with col2:
         else:
             st.error("🤖 **Prediction: ChatGPT-Generated**")
             st.image("/Users/nahin/Documents/deploy/robot.jpg", caption="That's some AI magic! 🤖✨", width=300)
+
+
+
+#AI TExt---
+#  This project aims to create an AI-based malaria detection system that is fast, accurate, and usable in real-world conditions — especially in areas with limited medical resources. By using machine learning to analyze blood smear images, we can help doctors and health workers detect malaria earlier, treat patients sooner, and save more lives.
